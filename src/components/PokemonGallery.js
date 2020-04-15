@@ -14,12 +14,13 @@ function PokemonCard({ pokemon }) {
         <span
           className="type"
           style={{ backgroundColor: SetBackgroundColorForType(currType) }}
+          key={currType}
         >
           {currType}
         </span>
       ))}
       {Object.keys(base).map(currKey => (
-        <div className="base">
+        <div className="base" key={currKey}>
           {currKey}: {base[currKey]}
         </div>
       ))}
@@ -54,7 +55,7 @@ function SetBackgroundColorForType(currType) {
 function PokemonGallery({ pokemonData }) {
   return (
     <div className="PokemonGallery">
-      {pokemonData.map(currPokemon => <PokemonCard pokemon={currPokemon} />)}
+      {pokemonData.map(currPokemon => <PokemonCard key={currPokemon.id} pokemon={currPokemon} />)}
     </div>
   );
 }
