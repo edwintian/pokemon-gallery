@@ -4,7 +4,7 @@ import "./PokemonGallery.css";
 function PokemonCard({ pokemon }) {
   const { id, name, type, base } = pokemon;
   return (
-    <div className="pokemon">
+    <div className="pokemon" aria-label="card">
       <img
         src={process.env.PUBLIC_URL + "/pokemonImage/" + id + ".png"}
         alt=""
