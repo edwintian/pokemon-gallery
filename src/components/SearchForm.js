@@ -23,7 +23,6 @@ class SearchForm extends React.Component {
           className="input"
           value={this.state.searchText}
           onChange={this.handleChange}
-          placeholder="Enter filter string..."
           aria-label="filter-text"
         />
         <button
@@ -31,7 +30,7 @@ class SearchForm extends React.Component {
           onClick={() => this.props.updateSearchText(this.state.searchText)}
           aria-label="button"
         >
-          Click to filter
+          Filter by Name
         </button>
       </div>
     );
