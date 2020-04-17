@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import pokemonData from "../pokemon/pokemon";
+//import pokemonData from "../pokemon/pokemon";
 import SearchForm from "./SearchForm";
 import PokemonGallery from "./PokemonGallery";
 import axios from "axios";
@@ -10,28 +10,28 @@ class SearchablePokemonGallery extends React.Component {
     super(props);
     this.state = {
       pokemonSearchText: "",
-      //pokemonData: [],
-      isLoading: false
+      pokemonData: [],
+      isLoading: true
     };
   }
 
-  // fetchPokemonData = () => {
-  //   this.setState({
-  //     isLoading: true
-  //   });
-  //   const URL =
-  //     "https://us-central1-pokedex-23fb6.cloudfunctions.net/app/pokemonData";
-  //   axios(URL).then(res => {
-  //     this.setState({
-  //       pokemonData: res.data,
-  //       isLoading: false
-  //     });
-  //   });
-  // };
-  //
-  // componentDidMount() {
-  //   this.fetchPokemonData();
-  // }
+   fetchPokemonData = () => {
+     this.setState({
+       isLoading: true
+     });
+     const URL =
+       "https://us-central1-pokedex-23fb6.cloudfunctions.net/app/pokemonData";
+     axios(URL).then(res => {
+       this.setState({
+         pokemonData: res.data,
+         isLoading: false
+       });
+     });
+   };
+
+   componentDidMount() {
+     this.fetchPokemonData();
+   }
 
   updateSearchText = text => {
     this.setState({ pokemonSearchText: text });
@@ -40,8 +40,8 @@ class SearchablePokemonGallery extends React.Component {
 
   render() {
     //console.log("rendering in SearchablePokemonGallery");
-    //const filteredPokemonData = this.state.pokemonData.filter(pokemon =>
-    const filteredPokemonData = pokemonData.filter(pokemon =>
+    const filteredPokemonData = this.state.pokemonData.filter(pokemon =>
+    //const filteredPokemonData = pokemonData.filter(pokemon =>
       pokemon.name.english
         .toLowerCase()
         .includes(this.state.pokemonSearchText.toLowerCase())
